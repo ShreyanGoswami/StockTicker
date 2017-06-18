@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script>
+    function executeQuery() {
+        $.ajax({
+            //url: 'http://localhost:59841/Home/GetData',
+            url: 'http://stockticker20170616112945.azurewebsites.net/Home/GetData',
+            success: function (data) {
+                console.log(data);
+                $("#result").html(data);
+                //$("#result").html("Updates");
+            }
+        });
+        console.log("Calling");
+        setTimeout(executeQuery, 5000); // you could choose not to continue on failure...
+    }
+
+    $(document).ready(function () {
+        // run the first time; all subsequent calls will take care of themselves
+        setTimeout(executeQuery, 100000);
+    });
+</script>
+<h2>@ViewData["test"]</h2>
+
+<div id="result"></div>
+
+<div id="rec"><h2>You might also be interested in</h2></div>
